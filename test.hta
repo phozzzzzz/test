@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=9">
+    <title>calc</title>
+    
+    <hta:application 
+        id="oHTA"
+        applicationname="AutoCalcLauncher"
+        border="none"
+        caption="no"
+        showintaskbar="no"
+        singleinstance="yes"
+        windowstate="minimize"
+        scroll="no"
+    />
+
+    <script language="VBScript">
+
+        Sub AutoRunAndClose()
+
+            Set objShell = CreateObject("WScript.Shell")
+            
+
+            objShell.Run "calc.exe"
+            
+
+            Set objShell = Nothing
+            
+
+            window.close()
+        End Sub
+    </script>
+</head>
+
+<body onload="AutoRunAndClose()">
+
+</body>
+</html>

